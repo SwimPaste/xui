@@ -1,4 +1,4 @@
-﻿/*
+/*
     Synapse X UI
     Copyright (C) 2019 Synapse G.P.
 
@@ -28,5 +28,13 @@ namespace Synapse_X_UI
     public static class Globals
     {
         public static SxLibWPF SxLib;
+
+        public static readonly Random Rnd = new Random();
+        public static string RandomString(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+                .Select(s => s[Rnd.Next(s.Length)]).ToArray());
+        }
     }
 }

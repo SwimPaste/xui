@@ -34,18 +34,8 @@ namespace Synapse_X_UI
     /// </summary>
     class InterfaceDesign : Window
     {
-        private TimeSpan duration = TimeSpan.FromSeconds(1);
-        private IEasingFunction ease = new QuarticEase { EasingMode = EasingMode.EaseInOut };
-
-        public void setDuration(TimeSpan newDuration)
-        {
-            duration = newDuration;
-        }
-
-        public IEasingFunction getEase()
-        {
-            return ease;
-        }
+        private TimeSpan duration { get; set; } = TimeSpan.FromSeconds(1);
+        private IEasingFunction ease { get; set; } = new QuarticEase { EasingMode = EasingMode.EaseInOut };
 
         public InterfaceDesign(TimeSpan? timeSpan = null, IEasingFunction easingFunction = null)
         {
@@ -75,6 +65,7 @@ namespace Synapse_X_UI
 
             Storyboard storyboard = new Storyboard();
             storyboard.Children.Add(fadeAnimation);
+            //storyboard.FillBehavior = FillBehavior.Stop;
             storyboard.Begin();
         }
 
@@ -93,6 +84,7 @@ namespace Synapse_X_UI
 
             Storyboard storyboard = new Storyboard();
             storyboard.Children.Add(fadeAnimation);
+            //storyboard.FillBehavior = FillBehavior.Stop;
             storyboard.Begin();
         }
 
@@ -111,6 +103,7 @@ namespace Synapse_X_UI
 
             Storyboard storyboard = new Storyboard();
             storyboard.Children.Add(shiftAnimation);
+            //storyboard.FillBehavior = FillBehavior.Stop;
             storyboard.Begin();
         }
 
@@ -141,36 +134,7 @@ namespace Synapse_X_UI
             Storyboard storyboard = new Storyboard();
             storyboard.Children.Add(leftAnimation);
             storyboard.Children.Add(topAnimation);
-            storyboard.Begin();
-        }
-
-        public void ShiftWindowZero(Window window, double leftFrom, double topFrom, double leftTo, double topTo)
-        {
-            DoubleAnimation leftAnimation = new DoubleAnimation()
-            {
-                From = leftFrom,
-                To = leftTo,
-                Duration = TimeSpan.Zero,
-                EasingFunction = ease
-            };
-
-            DoubleAnimation topAnimation = new DoubleAnimation()
-            {
-                From = topFrom,
-                To = topTo,
-                Duration = TimeSpan.Zero,
-                EasingFunction = ease
-            };
-
-            Storyboard.SetTarget(leftAnimation, window);
-            Storyboard.SetTargetProperty(leftAnimation, new PropertyPath(LeftProperty));
-
-            Storyboard.SetTarget(topAnimation, window);
-            Storyboard.SetTargetProperty(topAnimation, new PropertyPath(TopProperty));
-
-            Storyboard storyboard = new Storyboard();
-            storyboard.Children.Add(leftAnimation);
-            storyboard.Children.Add(topAnimation);
+            storyboard.FillBehavior = FillBehavior.Stop;
             storyboard.Begin();
         }
 
@@ -203,6 +167,7 @@ namespace Synapse_X_UI
             Storyboard storyboard = new Storyboard();
             storyboard.Children.Add(heightAnimation);
             storyboard.Children.Add(widthAnimation);
+            //storyboard.FillBehavior = FillBehavior.Stop;
             storyboard.Begin();
         }
 
@@ -221,6 +186,7 @@ namespace Synapse_X_UI
 
             Storyboard storyboard = new Storyboard();
             storyboard.Children.Add(colorAnimation);
+            //storyboard.FillBehavior = FillBehavior.Stop;
             storyboard.Begin();
         }
 
@@ -239,6 +205,7 @@ namespace Synapse_X_UI
 
             Storyboard storyboard = new Storyboard();
             storyboard.Children.Add(colorAnimation);
+            //storyboard.FillBehavior = FillBehavior.Stop;
             storyboard.Begin();
         }
     }

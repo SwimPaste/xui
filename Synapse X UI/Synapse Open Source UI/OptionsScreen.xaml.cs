@@ -1,4 +1,4 @@
-﻿/*
+/*
     Synapse X UI
     Copyright (C) 2019 Synapse G.P.
 
@@ -43,6 +43,8 @@ namespace Synapse_X_UI
             window = curWindow;
             Left = curWindow.Left + 400;
             Top = curWindow.Top;
+
+            Title = Globals.RandomString(Globals.Rnd.Next(10, 32));
         }
 
         private async void OptionsScreen_OnLoaded(object sender, RoutedEventArgs e)
@@ -64,15 +66,15 @@ namespace Synapse_X_UI
             designMethods.ShiftWindow(optionsScreen, Left, Top, Left + 325, Top);
             await Task.Delay(1000);
             active = true;
+            ExploitScreen.debounce = false;
             window.LocationChanged += Window_LocationChanged;
         }
 
         private void Window_LocationChanged(object sender, EventArgs e)
         {
-            if (active)
-            {
-                designMethods.ShiftWindowZero(optionsScreen, Left, Top, window.Left + 725, window.Top);
-            }
+            if (!active) return;
+            Left = window.Left + 725;
+            Top = window.Top;
         }
 
         private async void CloseButton_OnClick(object sender, RoutedEventArgs e)
@@ -91,8 +93,10 @@ namespace Synapse_X_UI
 
             window.Focus();
             active = false;
+            ExploitScreen.debounce = true;
             designMethods.ShiftWindow(optionsScreen, Left, Top, Left - 325, Top);
             await Task.Delay(1000);
+            ExploitScreen.debounce = false;
             Close();
         }
 

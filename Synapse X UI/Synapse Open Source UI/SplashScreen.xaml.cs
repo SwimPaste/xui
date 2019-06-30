@@ -46,6 +46,8 @@ namespace Synapse_X_UI
 
         private async void SplashScreen_OnLoaded(object sender, RoutedEventArgs e)
         {
+            Title = Globals.RandomString(Globals.Rnd.Next(10, 32));
+
             new Thread(async () =>
             {
                 Thread.CurrentThread.IsBackground = true;

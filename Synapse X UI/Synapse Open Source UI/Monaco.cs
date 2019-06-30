@@ -1,4 +1,4 @@
-﻿/*
+/*
     Synapse X UI
     Copyright (C) 2019 Synapse G.P.
 
